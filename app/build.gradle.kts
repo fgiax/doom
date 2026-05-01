@@ -39,7 +39,7 @@ android {
 
 // ✅ kotlinOptions выносится на уровень модуля
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
 
 
