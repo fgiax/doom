@@ -1,47 +1,36 @@
 package com.example.doom
 
+import android.app.Activity
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.doom.ui.theme.DoomTheme
+import android.view.Menu
+import android.widget.TextView
+import android.widget.ActionMenuView
+import android.widget.LinearLayout
 
-class MainActivity : ComponentActivity() {
+class MainActivity : Activity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            DoomTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+
+        val layout = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
         }
-    }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+        val textView = TextView(this).apply {
+            text = "Hello from Doom"
+            textSize = 24f
+        }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    DoomTheme {
-        Greeting("Android")
+        val actionMenuView = ActionMenuView(this)
+        val menu = actionMenuView.menu
+        menu.add("hello")
+        menu.add("hello")
+        menu.add("hello")
+        menu.add("hello")
+
+        layout.addView(textView)
+        layout.addView(actionMenuView)
+
+        setContentView(layout)
     }
 }
